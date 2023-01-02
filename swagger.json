@@ -290,6 +290,86 @@
           }
         }
       }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Set admin",
+        "description": "Set admin",
+        "operationId": "setAdmin",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "iD of the requested user",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "123e4567-e89b-12d3-a456-426655440000"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "example": "123e4567-e89b-12d3-a456-426655440000"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "John Doe"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "JohnDoe@hotmail.com"
+                    },
+                    "admin": {
+                      "type": "boolean",
+                      "example": "true"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2020-05-20T20:20:39.000Z"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time",
+                      "example": "2020-05-20T20:20:39.000Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User not found!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
